@@ -9,33 +9,51 @@ html {
 }
 
 body {
-  width: 100vw;
-  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
   display: flex;
-  justify-content: center;
-  background: linear-gradient(#30f000, #005de7);
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(150deg, #30f000, #005de7);
 }
-  
+
 button:hover {
   cursor: pointer;
   background-color: #73E831;
 }
-  
+
 ul {
   list-style-type: none;
 }
 
+.sitename {
+  display: flex;
+}
+
+h1 {
+color: rgb(255, 255, 255);
+font-size: 3rem;
+}
+
 .container {
+  border-radius: 7px;
   width: 320px;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
+  height: fit-content;
+  background-color: rgba(244, 247, 252, 1);
 }
-  
-h1 {
-  color: #fff;
-  font-size: 3rem;
+
+.todo__date {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  margin: 1rem;
+  font-size: 1.4rem;
+  color: rgb(204, 23, 23);
 }
 
 .todo__form {
@@ -56,37 +74,49 @@ h1 {
   
 .todo__addBtn {
   width: 40px;
-  background-color: #0000ff;
-  color: #fff;
+  background-color:rgb(221,221,221);
+  color: rgb(255, 255, 255);
   border: none;
   outline: none;
   border-radius: 0 5px 5px 0;
   font-size: 1.2rem;
 }
 
+.todo__addBtn:hover {
+  background-color: rgb(31, 44, 221);
+}
+
 .todo__count {
   margin-top: 2rem;
-  color: rgb(250, 250, 250);
+  margin-left: 1rem;
+  color: rgb(50, 50, 50);
   font-size: 1.1rem;
   align-self: flex-start;
   font-weight: 600;
 }
   
-.todo__items {
+.todo__items, .todo__items--checked {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 280px;
-  background-color: #fff;
+  /* background-color: #fff; */
   padding: 10px;
   font-size: 1.1rem;
   border-radius: 7px;
 }
 
-.todo__item {
+.todo__item, .todo__item--checked {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-top: .4rem;
+  background-color: rgb(224,232,245);
+  padding: .2rem;
+}
+
+.checked {
+  display: flex;
 }
  
 .todo__checkbox {
@@ -98,12 +128,11 @@ h1 {
 }
 
 .todo__deleteBtn {
-  
-  background-color: #dc143c;
+  background-color: rgb(255, 0, 0);
   border: none;
   outline: none;
   border-radius: 7px;
-  /* padding: 2px 5px; */
+  padding: 2px 12px;
   /* margin-left: 10px; */
   font-size: 1.1rem;
   font-weight: 550;

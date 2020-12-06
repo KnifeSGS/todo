@@ -8,10 +8,15 @@
     <link rel="stylesheet" href="./node_modules/font-awesome/css/font-awesome.min.css">
 </head>
 <body>
-    
+  
+    <div class="sitename">
+      <h1>Todo360</h1>
+    </div>
     <div class="container">
-        <h1>Todo360</h1>
-    
+        <div class="todo__date">
+          <div class="date__dayName">day</div>
+          <div class="date__today">06-12-2020</div>
+        </div>
         <form class="todo__form">
           <input type="text" class="todo__input" placeholder="Take the garbage out">
           <button type="submit" class="todo__addBtn"><i class="fa fa-plus" aria-hidden="true"></i></button>
@@ -22,9 +27,25 @@
           <li class="todo__item" data-key="1594003133171">
             <input class="todo__checkbox" type="checkbox">
             Teszt feladat
-            <button class="todo__deleteBtn"><i class="fa fa-trash" aria-hidden="true"></i></button>
+            <button class="todo__deleteBtn" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button>
           </li>
         </ul>
+
+        <div class="todo__functionBtns">
+          <button type="button" class="todos__hide">Hide or show checked</button>
+          <button type="button" class="todos__clear">Clear todos</button>
+          
+        </div>
+
+        <ul class="todo__items--checked">
+          <li class="todo__item--checked" data-key="1594003133171">
+            <input class="todo__checkbox" type="checkbox">
+            <span class="item__text">Teszt feladat</span>
+            <button class="todo__deleteBtn" type="button"><i class="fa fa-trash" aria-hidden="true"></i></button>
+          </li>
+        </ul>
+
+
     </div>
 
 
