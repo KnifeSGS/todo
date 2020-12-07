@@ -6,15 +6,13 @@ const todoItemsList = document.querySelector('.todo__items');
 const todoItemsChecked = document.querySelector('.todo__items--checked');
 let todos = [];
 let uncheckedTodos = 0;
-let checkedCounter = 0;
-
 
 todoForm.addEventListener('submit', function (event) {
   event.preventDefault();
   addTodo(todoInput.value);
 });
 
-function addTodo(item) {
+const addTodo = (item) => {
   if (item !== '') {
     const todo = {
       id: Date.now(),
@@ -28,7 +26,7 @@ function addTodo(item) {
   }
 }
 
-function renderTodos(todos) {
+const renderTodos = (todos) => {
   todoItemsList.innerHTML = '';
   todoItemsChecked.innerHTML = '';
 
@@ -51,11 +49,18 @@ function renderTodos(todos) {
 
     if (item.completed === true) {
       todoItemsChecked.append(li);
+      setTimeout(function(){
+        li.classList.add('show');
+      }, 10);
     } else {
       todoItemsList.append(li);
+      setTimeout(function(){
+        li.classList.add('show');;
+      }, 10);
     }
   });
   uncheckedCounter();
+  completedTaskPercent();
 }
 
 const dayToday = () => {
@@ -80,6 +85,15 @@ const dateToday = () => {
 dayToday();
 dateToday();
 
+const chillTemplate = `
+                      <div class="chill">
+                        <img src="./img/beach.png" alt="SunShade" width="100px">
+                        <span>
+                        Time to chill! You have no todos.
+                        </span>
+                      </div>
+                      `;
+
 const uncheckedCounter = () => {
   let counter = [];
   todos.filter(item => {
@@ -88,14 +102,28 @@ const uncheckedCounter = () => {
     }
   })
   document.querySelector('.item__count').textContent = counter.length;
+
+  if (counter.length === 0) {
+    todoItemsList.innerHTML = chillTemplate
+  }
 }
 
-function addToLocalStorage(todos) {
+const completedTaskPercent = () => {
+  let counter = [];
+  todos.filter(item => {
+    if (item.completed === false) {
+      counter.push(item);
+    }
+  })
+  document.querySelector('.progressPercent').textContent = parseInt((todos.length - counter.length) * 100 / todos.length);
+}
+
+const addToLocalStorage = (todos) => {
   localStorage.setItem('todos', JSON.stringify(todos));
   renderTodos(todos);
 }
 
-function getFromLocalStorage() {
+const getFromLocalStorage = () => {
   const reference = localStorage.getItem('todos');
   if (reference) {
     todos = JSON.parse(reference);
@@ -103,7 +131,7 @@ function getFromLocalStorage() {
   }
 }
 
-function toggle(id) {
+const toggle = (id) => {
   todos.forEach(function (item) {
     if (item.id == id) {
       item.completed = !item.completed;
@@ -113,7 +141,7 @@ function toggle(id) {
   addToLocalStorage(todos);
 }
 
-function deleteTodo(id) {
+const deleteTodo = (id) => {
   todos = todos.filter(function (item) {
     return item.id != id;
   });
@@ -145,21 +173,17 @@ todoItemsChecked.addEventListener('click', function (ev) {
 
 document.querySelector('.todos__hide').addEventListener('click', () => {
   document.querySelector('.todo__items--checked').classList.toggle('autoHideChecked')
-})
+});
+
+document.querySelector('.todos__hide').addEventListener('click', () => {
+  document.querySelector('.progress').classList.toggle('autoHideChecked')
+});
 
 const clearTodos = () => {
   localStorage.removeItem('todos')
-}
+};
 
 document.querySelector('.todos__clear').addEventListener('click', () => {
   clearTodos();
   location.reload();
-})
-
-/* <div class="chill">
-            <img src="./img/beach.png" alt="SunShade" width="100px">
-            <span>
-              Time to chill! You have no todos.
-            </span>
-          </div> */
-
+});

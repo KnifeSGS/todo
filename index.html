@@ -1,58 +1,64 @@
 <!DOCTYPE html>
 <html lang="hu">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./node_modules/font-awesome/css/font-awesome.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet"
+    href="./node_modules/font-awesome/css/font-awesome.min.css">
 </head>
+
 <body>
-  
-    <div class="sitename">
-      <h1>Todo360</h1>
+
+  <div class="sitename">
+    <h1>Todo360</h1>
+  </div>
+  <div class="container">
+    <div class="todo__date">
+      <div class="date__dayName">day</div>
+      <div class="date__today">06-12-2020</div>
     </div>
-    <div class="container">
-        <div class="todo__date">
-          <div class="date__dayName">day</div>
-          <div class="date__today">06-12-2020</div>
-        </div>
-        <form class="todo__form">
-          <input type="text" class="todo__input" placeholder="Take the garbage out">
-          <button type="submit" class="todo__addBtn"><i class="fa fa-plus" aria-hidden="true"></i></button>
-        </form>
-    
-        <div class="todo__count">You have <span class="item__count">0 </span> pending items</div>
-        <ul class="todo__items">
-          <div class="chill">
-            <img src="./img/beach.png" alt="SunShade" width="100px">
-            <span>
-              Time to chill! You have no todos.
-            </span>
-          </div>
-        </ul>
+    <form class="todo__form">
+      <input type="text" class="todo__input" placeholder="Take the garbage out">
+      <button type="submit" class="todo__addBtn"><i class="fa fa-plus"
+          aria-hidden="true"></i></button>
+    </form>
 
-        <div class="todo__progressbar">
-        </div>
+    <div class="todo__count">You have <span class="item__count">0 </span>
+      pending items</div>
+    <ul class="todo__items">
+      <div class="chill">
+        <img src="./img/beach.png" alt="SunShade" width="100px">
+        <span>
+          Time to chill! You have no todos.
+        </span>
+      </div>
+    </ul>
 
-        <div class="todo__functionBtns">
-          <button type="button" class="todos__hide">Hide or show completed</button>
-          <button type="submit" class="todos__clear">Clear All</button>
-          
-        </div>
-
-        <ul class="todo__items--checked autoHideChecked">
-          <li class="todo__item--checked" data-key="1594003133171">
-           
-          </li>
-        </ul>
-
-
+    <div class="todo__progressbar">
     </div>
 
+    <div class="todo__functionBtns">
+      <button type="button" class="todos__hide">Show complete</button>
+      <button type="submit" class="todos__clear">Clear All</button>
+    </div>
+
+    <div class="progress autoHideChecked">Completed tasks: <span class="progressPercent"> 0</span>%</div>
+    <ul class="todo__items--checked autoHideChecked">
+      <li class="todo__item--checked" data-key="1594003133171">
+
+      </li>
+    </ul>
+
+
+  </div>
 
 
 
-    <script src="./js/main.js"></script>
+
+  <script src="./js/main.js"></script>
 </body>
+
 </html>

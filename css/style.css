@@ -5,33 +5,37 @@
     margin: 0;
     padding: 0;
 }
-
+  
 html {
-    font-family: 'Open Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
-
+  
 body {
   height: 100vh;
+  max-height: fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: linear-gradient(150deg, #30f000, #005de7);
+  background: linear-gradient(150deg, rgb(48, 240, 0), rgb(0, 93, 231));
+  background-attachment: fixed;
+  background-repeat: no-repeat;
 }
-
+  
 ul {
   list-style-type: none;
 }
-
+  
 .sitename {
   display: flex;
 }
-
+  
 h1 {
-color: rgb(255, 255, 255);
-font-size: 3rem;
-margin: 3rem;
+  text-shadow: 2px 3px 6px rgba(112, 112, 112, 0.329);
+  color: rgb(255, 255, 255);
+  font-size: 3rem;
+  margin: 3rem;
 }
-
+  
 .container {
   border-radius: 7px;
   width: 320px;
@@ -40,9 +44,12 @@ margin: 3rem;
   align-items: center;
   padding: 20px;
   height: fit-content;
-  background-color: rgba(244, 247, 252, 1);
+  background-color: rgba(244, 247, 252, 0.9);
+  box-shadow: 0 0 10px 5px rgba(112, 112, 112, 0.329);
+  z-index: 10;
+  position: relative;
 }
-
+  
 .todo__date {
   display: flex;
   flex-direction: column;
@@ -51,7 +58,7 @@ margin: 3rem;
   font-size: 1.4rem;
   color: rgb(204, 23, 23);
 }
-
+  
 .todo__form {
   display: flex;
   flex-direction: row;
@@ -67,7 +74,7 @@ margin: 3rem;
   padding: 10px;
   font-size: 1rem;
 }
-
+  
 ::placeholder {
   font-size: 1rem;
   color: rgb(190, 190, 190);
@@ -81,11 +88,14 @@ margin: 3rem;
   border: none;
   outline: none;
   border-radius: 0 5px 5px 0;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .todo__addBtn:hover {
-  background-color: rgb(31, 44, 221);
+  background-color: rgb(51, 63, 235);
   cursor: pointer;
 }
 
@@ -93,11 +103,11 @@ margin: 3rem;
   margin-top: 2rem;
   margin-left: 1rem;
   color: rgb(50, 50, 50);
-  font-size: 1.1rem;
+  font-size: 1rem;
   align-self: flex-start;
-  font-weight: 600;
+  font-weight: 500;
 }
-  
+
 .todo__items, .todo__items--checked {
   display: flex;
   flex-direction: column;
@@ -112,15 +122,25 @@ margin: 3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: .4rem;
-  background-color: rgb(224,232,245);
+  margin-top: 0;
+  background-color: rgba(176, 197, 230, 0.397);
   padding-top: 0;
-  padding-left: .5rem;
+  padding-left: .7rem;
   padding-bottom: 0;
   padding-right: 0;
-  height: 2rem;
+  height: 0;
   overflow: hidden;
   border-radius: 7px;
+  font-size: .9rem;
+  transition: all 0.5s ease-out;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.show {
+  height: 2.3em;
+  margin-top: .4rem;
+  opacity: 1;
 }
 
 .autoHideChecked {
@@ -175,15 +195,14 @@ margin: 3rem;
 .fa-trash {
   display: flex;
   align-self: center;
-  /* background-color: rgb(235, 84, 84); */
-  background: linear-gradient(90deg, rgba(2,0,36,0) 1%, rgba(255,0,0,1) 100%);
-  padding: .5rem .8rem;
+  background: linear-gradient(90deg, rgba(2,0,36,0) 1%, rgb(233, 53, 53) 100%);
+  padding: .6rem .8rem;
   height: 100%;
 }
 
 .fa-trash:hover {
   cursor: pointer;
-  background-color: rgb(255, 0, 0);
+  background-color: rgb(255, 31, 31);
 }
 
 .checked { 
@@ -192,4 +211,26 @@ margin: 3rem;
 
 .todo__functionBtns {
   margin: 1rem;
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.todos__hide, .todos__clear {
+  font-weight: 700;
+  display: flex;
+  border: none;
+  background: none;
+  outline: none;
+}
+
+.todos__hide:hover, .todos__clear:hover {
+  cursor: pointer;
+  text-shadow: 2px 2px rgba(78, 103, 145, 0.329);
+}
+
+.progress {
+  align-self: flex-start;
+  font-size: .8rem;
+  margin: 0 1rem;
 }
