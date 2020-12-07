@@ -3,6 +3,7 @@
 const todoForm = document.querySelector('.todo__form');
 const todoInput = document.querySelector('.todo__input');
 const todoItemsList = document.querySelector('.todo__items');
+const todoItemsChecked = document.querySelector('.todo__items--checked');
 let todos = [];
 let uncheckedTodos = 0;
 let checkedCounter = 0;
@@ -27,16 +28,9 @@ function addTodo(item) {
   }
 }
 
-const createAnyELement = (name, attributes) => {
-  let element = document.createElement(name);
-  for (let k in attributes) {
-    element.setAttribute(k, attributes(k));
-  }
-  return element;
-}
-
 function renderTodos(todos) {
   todoItemsList.innerHTML = '';
+  todoItemsChecked.innerHTML = '';
 
   todos.forEach(function (item) {
     const checked = item.completed ? 'checked' : null;
@@ -55,39 +49,41 @@ function renderTodos(todos) {
       `;
     li.insertAdjacentHTML('afterbegin', liTemplate);
 
-    todoItemsList.append(li);
+    if (item.completed === true) {
+      todoItemsChecked.append(li);
+    } else {
+      todoItemsList.append(li);
+    }
   });
   uncheckedCounter();
-  dayToday();
-  dateToday();
 }
 
 const dayToday = () => {
   const now = new Date();
   const weekday = new Array(7);
-    weekday[0] = "Sunday";
-    weekday[1] = "Monday";
-    weekday[2] = "Tuesday";
-    weekday[3] = "Wednesday";
-    weekday[4] = "Thursday";
-    weekday[5] = "Friday";
-    weekday[6] = "Saturday";
+  weekday[0] = "Sunday";
+  weekday[1] = "Monday";
+  weekday[2] = "Tuesday";
+  weekday[3] = "Wednesday";
+  weekday[4] = "Thursday";
+  weekday[5] = "Friday";
+  weekday[6] = "Saturday";
   const today = weekday[now.getDay()];
-  // return today;
   document.querySelector('.date__dayName').textContent = today;
 }
 
 const dateToday = () => {
   const now = new Date();
   const date = now.toLocaleDateString('nl-NL')
-  // return date;
   document.querySelector('.date__today').textContent = date;
 }
+dayToday();
+dateToday();
 
 const uncheckedCounter = () => {
   let counter = [];
   todos.filter(item => {
-    if (item.completed === false){
+    if (item.completed === false) {
       counter.push(item);
     }
   })
@@ -104,9 +100,8 @@ function getFromLocalStorage() {
   if (reference) {
     todos = JSON.parse(reference);
     renderTodos(todos);
-    }
+  }
 }
-
 
 function toggle(id) {
   todos.forEach(function (item) {
@@ -128,16 +123,43 @@ function deleteTodo(id) {
 
 getFromLocalStorage();
 
-todoItemsList.addEventListener('click', function (event) {
-  if (event.target.type === 'checkbox') {
-    toggle(event.target.parentElement.getAttribute('data-key'));
+todoItemsList.addEventListener('click', function (ev) {
+  if (ev.target.type === 'checkbox') {
+    toggle(ev.target.parentElement.getAttribute('data-key'));
   }
 
-  if (event.target.classList.contains('todo__deleteBtn')) {
-    deleteTodo(event.target.parentElement.getAttribute('data-key'));
-  }
-
-  if (event.target.classList.contains('todo__deleteBtn').childNodes) {
-    deleteTodo(event.target.parentElement.getAttribute('data-key'));
+  if (ev.target.classList.contains('fa-trash')) {
+    deleteTodo(ev.target.parentElement.parentElement.getAttribute('data-key'));
   }
 });
+
+todoItemsChecked.addEventListener('click', function (ev) {
+  if (ev.target.type === 'checkbox') {
+    toggle(ev.target.parentElement.getAttribute('data-key'));
+  }
+
+  if (ev.target.classList.contains('fa-trash')) {
+    deleteTodo(ev.target.parentElement.parentElement.getAttribute('data-key'));
+  }
+});
+
+document.querySelector('.todos__hide').addEventListener('click', () => {
+  document.querySelector('.todo__items--checked').classList.toggle('autoHideChecked')
+})
+
+const clearTodos = () => {
+  localStorage.removeItem('todos')
+}
+
+document.querySelector('.todos__clear').addEventListener('click', () => {
+  clearTodos();
+  location.reload();
+})
+
+/* <div class="chill">
+            <img src="./img/beach.png" alt="SunShade" width="100px">
+            <span>
+              Time to chill! You have no todos.
+            </span>
+          </div> */
+
