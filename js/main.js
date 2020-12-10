@@ -171,8 +171,15 @@ todoItemsChecked.addEventListener('click', function (ev) {
   }
 });
 
-document.querySelector('.todos__hide').addEventListener('click', () => {
-  document.querySelector('.todo__items--checked').classList.toggle('autoHideChecked')
+const checkedView = document.querySelector('.todo__items--checked');
+const checkBtn = document.querySelector('.todos__hide');
+checkBtn.addEventListener('click', () => {
+  checkedView.classList.toggle('autoHideChecked');
+  if (checkedView.classList.contains('autoHideChecked')) {
+    checkBtn.textContent = 'Show complete';
+  } else {
+    checkBtn.textContent = 'Hide complete';
+  }
 });
 
 document.querySelector('.todos__hide').addEventListener('click', () => {
